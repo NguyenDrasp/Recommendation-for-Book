@@ -1,0 +1,75 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+     <p>DÀNH CHO BẠN</p>
+     <div class="row">
+          {% for product in recu %}
+          <div id = "cart-product">
+               <img src="{{product.image_url}}" alt="" class="thumbnail">
+               <div class="box-element product">
+                    {% if product.title.30 %}
+                         <div class="name_product"><strong>{{product.title|slice:":30"}}...</strong></div>
+                    {% else %}
+                         <div class="name_product"><strong>{{product.title}}</strong></div>
+                    {% endif %}
+                    
+                    <hr>
+                    <div id="product_inforr"  >
+                         <button data-product={{product.id}} data-action="add"  
+                         class="btn btn-outline-secondary add-btn update-cart"> Thêm vào giỏ </button>
+                         <a href="product/{{product.id}}" class="btn btn-outline-success">Xem</a>
+                         <h4 class="price_product">
+                              <strong>{{product.price|floatformat:3}}đ</strong>
+                         </h4>
+                    </div>
+                         
+               </div>
+          </div>
+          {% endfor %}
+     </div>
+     <div id="rightside" class="col-lg-3" style="float: right; padding-left: 0;" >
+          <h2><span style="font-size: 1.9rem;">MUA NHIỀU NHẤT</span></h2>
+          {% for product in top %}
+          <a href="product/{{product.id}}" >
+               <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <img src="{{product.image_url}}" alt="{{product.title}}" class="card-img">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <p class="card-text"><small class="text-muted">{{product.title}}</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          </a>
+          {% endfor %}
+          
+     </div>
+     <div class="row col-lg-9" >
+          {% for product in products|slice:"20:50" %}
+          <div class="col-lg-3" id = "cart-product">
+               <img src="{{product.image_url}}" alt="" class="thumbnail">
+               <div class="box-element product">
+                    {% if product.title.30 %}
+                         <div class="name_product"><strong>{{product.title|slice:":30"}}...</strong></div>
+                    {% else %}
+                         <div class="name_product"><strong>{{product.title}}</strong></div>
+                    {% endif %}
+                    
+                    <hr>
+                    <div id="product_inforr"  >
+                         <button data-product={{product.id}} data-action="add"  
+                         class="btn btn-outline-secondary add-btn update-cart"> Thêm vào giỏ </button>
+                         <a href="product/{{product.id}}" class="btn btn-outline-success">Xem</a>
+                         <h4 class="price_product">
+                              <strong>{{product.price|floatformat:3}}đ</strong>
+                         </h4>
+                    </div>
+                         
+               </div>
+          </div>
+          {% endfor %}
+     </div>
+{% endblock content %}
